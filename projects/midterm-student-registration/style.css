@@ -1,0 +1,377 @@
+
+:root {
+  --blue-950: #243528;
+  --blue-900: #344b38;
+  --blue-800: #405e42;
+  --blue-700: #547452;
+  --blue-600: #66865e;
+  --blue-500: #78976c;
+  --blue-400: #94ad82;
+  --blue-200: #d1dfc7;
+  --blue-100: #e4eddc;
+  --blue-50:  #f5f7ef;
+
+  --text-dark: var(--blue-950);
+  --border: var(--blue-200);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background-color: var(--blue-50);
+  color: var(--text-dark);
+  font-family: "Segoe UI", Arial, sans-serif;
+}
+
+/* ---------- Header ---------- */
+header {
+  background-color: var(--blue-900);
+  text-align: center;
+  padding: 36px 20px;
+}
+
+header h1 {
+  margin: 0;
+  color: #ffffff;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+header p {
+  margin: 8px 0 0;
+  color: var(--blue-200);
+}
+
+/* ---------- Navigation ---------- */
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: var(--blue-700);
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+  padding: 14px 0;
+}
+
+nav a {
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 500;
+  padding-bottom: 4px;
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.25s ease, opacity 0.25s ease;
+}
+
+nav a:hover,
+nav a:focus {
+  opacity: 0.8;
+}
+
+nav a.active {
+  border-bottom-color: #ffffff;
+}
+
+/* ---------- Main content ---------- */
+main {
+  padding: 40px 20px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+/* Home page layout */
+.home-layout {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.welcome-card,
+.announcements-card {
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 24px;
+  flex: 1;
+  min-width: 280px;
+  background-color: #ffffff;
+  transition: border-color 0.25s ease;
+}
+
+.announcements-card{
+  background-color: var(--blue-100);
+}
+
+.welcome-card:hover,
+.announcements-card:hover {
+  border-color: var(--blue-500);
+  font-weight: 600;
+}
+
+.welcome-card h2,
+.announcements-card h2 {
+  margin-top: 0;
+  color: var(--blue-800);
+}
+
+.announcements-card ul {
+  padding-left: 20px;
+  margin-bottom: 0;
+}
+
+/* Profile page */
+.profile-card {
+  background-color: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 24px;
+  display: flex;
+  align-items: flex-start;
+  gap: 24px;
+}
+
+.profile-photo {
+  width: 200px;
+  margin: 0;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.profile-photo img {
+  display: block;
+  width: 100%;
+  height: 240px;
+  border-radius: 8px;
+  background-color: var(--blue-100);
+  border: 1px solid var(--border);
+  object-fit: cover;
+}
+
+.profile-photo figcaption {
+  margin-top: 8px;
+  color: var(--blue-700);
+  font-size: 0.9rem;
+}
+
+.profile-card h2 {
+  margin-top: 0;
+  color: var(--blue-800);
+}
+
+.profile-card h3 {
+  margin-top: 20px;
+  margin-bottom: 8px;
+  color: var(--blue-700);
+}
+
+.profile-card article > p {
+  margin: 0;
+}
+
+.profile-card blockquote {
+  margin: 0;
+  padding-left: 14px;
+  border-left: 3px solid var(--blue-400);
+  color: var(--blue-700);
+  font-style: italic;
+}
+
+/* Registration form */
+.registration-form {
+  background-color: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 32px;
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.registration-form h2 {
+  margin-top: 0;
+  color: var(--blue-800);
+}
+
+.registration-form label {
+  display: block;
+  margin-top: 18px;
+  margin-bottom: 6px;
+  font-weight: 500;
+  color: var(--blue-900);
+}
+
+.registration-form input[type="text"],
+.registration-form input[type="email"],
+.registration-form input[type="password"],
+.registration-form select,
+.registration-form textarea,
+.registration-form input[type="file"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background-color: var(--blue-50);
+  color: var(--text-dark);
+  font-family: inherit;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.registration-form input:focus,
+.registration-form select:focus,
+.registration-form textarea:focus {
+  outline: none;
+  border-color: var(--blue-500);
+  box-shadow: 0 0 0 3px rgba(120, 151, 108, 0.18);
+}
+
+fieldset {
+  border: none;
+  padding: 0;
+  margin: 18px 0 0;
+}
+
+fieldset legend {
+  font-weight: 500;
+  color: var(--blue-900);
+  padding: 0;
+  margin-bottom: 6px;
+}
+
+.radio-group,
+.checkbox-group {
+  display: flex;
+  gap: 20px;
+}
+
+.radio-group label,
+.checkbox-group label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 0;
+  font-weight: normal;
+  color: var(--text-dark);
+}
+
+.registration-form button {
+  width: 100%;
+  margin-top: 22px;
+  padding: 12px;
+  border: 1px solid var(--blue-700);
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+.registration-form button[type="submit"] {
+  background-color: var(--blue-700);
+  color: #ffffff;
+}
+
+.registration-form button[type="submit"]:hover {
+  background-color: var(--blue-800);
+}
+
+.registration-form button.reset-btn {
+  background-color: #ffffff;
+  color: var(--blue-700);
+}
+
+.registration-form button.reset-btn:hover {
+  background-color: var(--blue-100);
+}
+
+/* Grades page */
+.grades-section h2 {
+  margin-bottom: 20px;
+  color: var(--blue-800);
+}
+
+.grades-intro {
+  margin-top: -10px;
+  color: var(--blue-700);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #ffffff;
+  border: 2px solid var(--border);
+}
+
+caption {
+  padding: 12px;
+  color: var(--blue-800);
+  font-weight: 600;
+  text-align: left;
+}
+
+thead {
+  background-color: var(--blue-800);
+}
+
+thead th {
+  color: #ffffff;
+  font-weight: 500;
+  padding: 12px;
+  text-align: center;
+}
+
+tbody td {
+  padding: 12px;
+  text-align: center;
+  border-top: 1px solid var(--border);
+  transition: background-color 0.2s ease;
+}
+
+tbody tr:hover td {
+  background-color: var(--blue-50);
+}
+
+.grade-status {
+  color: #24613c;
+  font-weight: 600;
+}
+
+tfoot td {
+  padding: 12px;
+  font-weight: 600;
+  text-align: right;
+  border: 2px solid var(--blue-700);
+  color: var(--blue-800);
+}
+
+#average{
+  text-align: center;
+}
+
+#general-average{
+  text-align: center;
+}
+
+#DSAn, #AlgoC{
+  background-color: var(--blue-100);
+  font-weight: 600;
+}
+
+/* ---------- Footer ---------- */
+footer {
+  background-color: var(--blue-900);
+  text-align: center;
+  padding: 18px;
+  color: var(--blue-200);
+}
+
+@media (max-width: 640px) {
+  .profile-card {
+    flex-direction: column;
+    padding: 20px;
+  }
+
+  .profile-photo {
+    width: min(100%, 200px);
+  }
+}

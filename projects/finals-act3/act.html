@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Student Profile</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <style>
+        :root {
+            --matcha-background: #8fa77a;
+            --matcha-header: #e1e9d2;
+            --matcha-profile: #c5d5ae;
+            --matcha-table: #e4edcf;
+            --matcha-button: #7f925d;
+            --matcha-button-hover: #687d48;
+            --matcha-accent: #667b46;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            margin: 0;
+            padding: 1px 24px 32px;
+            background: #edf1e6;
+            color: #263021;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .welcome {
+            max-width: 1100px;
+            margin: 27px auto 18px;
+            padding: 24px 30px;
+            border-radius: 18px;
+            background: var(--matcha-header);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+        }
+
+        .welcome h1 {
+            margin: 0;
+            color: #35452b;
+            font-size: 28px;
+        }
+
+        .accent-text {
+            margin: 0;
+            color: var(--matcha-accent);
+            font-size: 14px;
+        }
+
+        .page-content {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+            gap: 18px;
+        }
+
+        .student-info {
+            min-height: 150px;
+            padding: 24px;
+            border-radius: 16px;
+            background: var(--matcha-profile);
+            align-content: center;
+        }
+
+        .student-info h2 {
+            margin: 0 0 10px;
+            color: #35452b;
+            font-size: 20px;
+        }
+
+        .student-info p {
+            margin: 4px 0;
+            font-size: 14px;
+        }
+
+        .profile-controls {
+            min-height: 150px;
+            padding: 24px;
+            border-radius: 16px;
+            background: #f8f9f3;
+            display: flex;
+            flex-wrap: wrap;
+            align-content: center;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        button {
+            padding: 10px 14px;
+            border: 0;
+            border-radius: 9px;
+            background: var(--matcha-button);
+            color: #fff;
+            font: inherit;
+            font-size: 13px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: var(--matcha-button-hover);
+        }
+
+        .control-caption {
+            flex-basis: 100%;
+            text-align: center;
+        }
+
+        .course-picker {
+            grid-column: 1 / -1;
+            margin: 0;
+            padding: 18px 24px;
+            border-radius: 16px;
+            background: #f8f9f3;
+            display: grid;
+            grid-template-columns: auto minmax(168px, 220px) 1fr;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .course-picker label {
+            color: #35452b;
+            font-size: 15px;
+            font-weight: 700;
+        }
+
+        .course-picker select {
+            width: 100%;
+            height: 40px;
+            padding: 0 12px;
+            border: 1px solid #c5d2b2;
+            border-radius: 8px;
+            background: #fff;
+            color: #263021;
+            font-family: inherit;
+            font-size: 14px;
+        }
+
+        .selection {
+            margin: 0;
+            font-size: 14px;
+            justify-self: end;
+        }
+
+        .table-section {
+            grid-column: 1 / -1;
+            min-width: 0;
+            padding: 22px;
+            border-radius: 16px;
+            background: var(--matcha-table);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            padding: 10px 12px;
+            border: 1px solid #b5c39f;
+            text-align: left;
+            font-size: 14px;
+        }
+
+        th {
+            background: #cfddb8;
+            color: #35452b;
+            font-size: 14px;
+            text-align: left;
+        }
+
+        .odd-row {
+            background: #eaf0dc;
+        }
+
+        .even-row {
+            background: #d8e4c5;
+        }
+
+        .table-caption {
+            margin-top: 14px;
+            text-align: right;
+        }
+
+        .table-controls {
+            grid-column: 1 / -1;
+            padding: 0 0 8px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .table-controls button {
+            margin: 0;
+        }
+
+        @media (max-width: 680px) {
+            body {
+                padding: 1px 14px 24px;
+            }
+
+            .welcome {
+                margin-top: 14px;
+                padding: 20px;
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .page-content {
+                grid-template-columns: 1fr;
+                gap: 14px;
+            }
+
+            .student-info,
+            .profile-controls,
+            .course-picker,
+            .table-section,
+            .table-controls {
+                grid-column: 1;
+            }
+
+            .course-picker {
+                grid-template-columns: 1fr;
+                gap: 8px;
+            }
+
+            .selection {
+                justify-self: start;
+            }
+
+            .table-section {
+                overflow-x: auto;
+                padding: 16px;
+            }
+
+            table {
+                min-width: 560px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="welcome">
+        <h1 id="title">Welcome, Students</h1>
+        <p class="accent-text">Welcome To My Interactive Profile</p>
+    </header>
+
+    <main class="page-content">
+        <section class="student-info" id="profile">
+            <h2>Student Information</h2>
+            <p>NAME: Jeremy G. Ban</p>
+            <p>COURSE: BSCS</p>
+            <p>YEAR LEVEL: 3rd year</p>
+        </section>
+
+        <section class="profile-controls" aria-label="Profile controls">
+            <button type="button" id="change-title">Change Title</button>
+            <button type="button" id="hide-profile">Hide Profile</button>
+            <button type="button" id="show-profile">Show Profile</button>
+            <p class="accent-text control-caption">Interact With The Buttons</p>
+        </section>
+
+        <div class="course-picker">
+            <label for="course">Select your program</label>
+            <select id="course" aria-label="Select your program">
+                <option value="BSCS">BSCS</option>
+                <option value="BSTM">BSTM</option>
+                <option value="BSHM">BSHM</option>
+                <option value="BSIT">BSIT</option>
+            </select>
+            <p class="selection">You selected: <span id="selected-course"></span></p>
+        </div>
+
+        <section class="table-section" id="table-section" aria-label="Sample data">
+            <table id="data-table">
+                <thead>
+                    <tr>
+                        <th>sample data</th>
+                        <th>sample data</th>
+                        <th>sample data</th>
+                        <th>sample data</th>
+                        <th>sample data</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>data1</td><td>data1</td><td>data1</td><td>data1</td><td>data1</td></tr>
+                    <tr><td>data2</td><td>data2</td><td>data2</td><td>data2</td><td>data2</td></tr>
+                    <tr><td>data3</td><td>data3</td><td>data3</td><td>data3</td><td>data3</td></tr>
+                    <tr><td>data4</td><td>data4</td><td>data4</td><td>data4</td><td>data4</td></tr>
+                    <tr><td>data5</td><td>data5</td><td>data5</td><td>data5</td><td>data5</td></tr>
+                </tbody>
+            </table>
+            <p class="accent-text table-caption">End of Data list</p>
+        </section>
+
+        <section class="table-controls" aria-label="Table controls">
+            <button type="button" id="color-odd">Color odd</button>
+            <button type="button" id="color-even">Color even</button>
+            <br>
+            <button type="button" id="hide-table">Hide table</button>
+            <button type="button" id="show-table">Show table</button>
+        </section>
+    </main>
+
+    <script src="act.js"></script>
+</body>
+</html>

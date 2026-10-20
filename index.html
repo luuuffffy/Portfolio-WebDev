@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jeremy G. Ban | Portfolio</title>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script>
+
+  (function () {
+    var saved = null;
+    try {
+      saved = localStorage.getItem('theme');
+    } catch (error) {
+    
+    }
+    var hour = new Date().getHours();
+    var byTime = (hour >= 18 || hour < 6) ? 'dark' : 'light';
+    document.documentElement.setAttribute('data-theme', saved || byTime);
+  })();
+  try {
+    if (localStorage.getItem('studentInfoHidden') === 'true') {
+      document.documentElement.setAttribute('data-student-info-prehidden', 'true');
+    }
+  } catch (error) {
+    
+  }
+</script>
+</head>
+<body>
+
+  <div class="bg-blob blob-1"></div>
+  <div class="bg-blob blob-2"></div>
+  <div class="bg-blob blob-3"></div>
+  <canvas id="sakuraCanvas" class="sakura-canvas" aria-hidden="true"></canvas>
+
+  <div id="readingProgress" class="reading-progress" role="progressbar" aria-label="Page reading progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div>
+
+  <nav class="navbar">
+    <div class="nav-logo">Jeremy<span>.Ban</span></div>
+    <div class="nav-right">
+      <button id="themeToggle" class="theme-toggle" type="button" aria-label="Switch color theme" title="Toggle dark / light mode">
+        <svg id="themeIcon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></svg>
+      </button>
+      <button id="menuToggle" class="menu-toggle" type="button" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navLinks">
+        <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+      </button>
+    </div>
+    <ul id="navLinks" class="nav-links">
+      <li><a href="#home" class="nav-link active">Home</a></li>
+      <li><a href="#bio" class="nav-link">About</a></li>
+      <li><a href="#activities" class="nav-link">Lab Activities</a></li>
+      <li><a href="#game" class="nav-link">Mini Game</a></li>
+      <li><a href="#contact" class="nav-link">Contact</a></li>
+    </ul>
+  </nav>
+
+  <section id="home" class="hero">
+    
+    <div class="cover-photo" style="background-image: url('images/cover.jpg');"></div>
+
+    <div class="profile-wrapper">
+      <button id="toggleProfile" class="toggle-btn" type="button" aria-label="Hide profile" aria-pressed="false" title="Hide/Show profile">
+        <svg id="eyeIcon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+      </button>
+
+      <div class="profile-card" id="profileCard">
+        <div class="profile-glow"></div>
+        <div class="profile-avatar">
+         
+          <img src="images/profile.jpg" alt="Jeremy G. Ban" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <span class="avatar-fallback">JB</span>
+        </div>
+        <p class="profile-intro" id="heroGreeting">HELLO, I'M</p>
+        <h1 class="profile-name">Jeremy G. Ban</h1>
+        <p class="profile-role">BSCS31A &middot; Web Development Student</p>
+        <p class="profile-tagline" id="heroTagline" aria-label="Learning, building, and reflecting — one lab at a time.">Learning, building, and reflecting — one lab at a time.</p>
+
+        <div class="profile-tags">
+          <span class="tag">HTML</span>
+          <span class="tag">CSS</span>
+          <span class="tag">JavaScript</span>
+        </div>
+
+        <div class="hero-actions">
+          <a href="#activities" class="cta-btn">View My Work</a>
+        </div>
+      </div>
+    </div>
+    <div class="skills-strip" aria-label="Web development technologies">
+      <span class="skills-strip-label">MY TOOLKIT</span>
+      <div class="skills-strip-tags">
+        <span class="skill-tag-wrap"><button class="project-tag skill-tag" type="button" aria-expanded="false" aria-describedby="skill-tip-html">HTML</button><span class="skill-tooltip" id="skill-tip-html" role="tooltip">Built the structure for each lab activity and portfolio page.</span></span>
+        <span class="skill-tag-wrap"><button class="project-tag skill-tag" type="button" aria-expanded="false" aria-describedby="skill-tip-css">CSS</button><span class="skill-tooltip" id="skill-tip-css" role="tooltip">Styled responsive layouts and the portfolio's visual theme.</span></span>
+        <span class="skill-tag-wrap"><button class="project-tag skill-tag" type="button" aria-expanded="false" aria-describedby="skill-tip-javascript">JavaScript</button><span class="skill-tooltip" id="skill-tip-javascript" role="tooltip">Added page interactions, events, and the mini-game.</span></span>
+        <span class="skill-tag-wrap"><button class="project-tag skill-tag" type="button" aria-expanded="false" aria-describedby="skill-tip-jquery">jQuery</button><span class="skill-tooltip" id="skill-tip-jquery" role="tooltip">Used for the Interactive Student Dashboard activity.</span></span>
+        <span class="skill-tag-wrap"><button class="project-tag skill-tag" type="button" aria-expanded="false" aria-describedby="skill-tip-ajax">AJAX</button><span class="skill-tooltip" id="skill-tip-ajax" role="tooltip">Fetched user data without reloading the page.</span></span>
+        <span class="skill-tag-wrap"><button class="project-tag skill-tag" type="button" aria-expanded="false" aria-describedby="skill-tip-flexbox">Flexbox</button><span class="skill-tooltip" id="skill-tip-flexbox" role="tooltip">Arranged navigation and content in the student website.</span></span>
+        <span class="skill-tag-wrap"><button class="project-tag skill-tag" type="button" aria-expanded="false" aria-describedby="skill-tip-dom">DOM</button><span class="skill-tooltip" id="skill-tip-dom" role="tooltip">Updated page content and styles in response to user actions.</span></span>
+        <span class="skill-tag-wrap"><button class="project-tag skill-tag" type="button" aria-expanded="false" aria-describedby="skill-tip-async">Async / Promises</button><span class="skill-tooltip" id="skill-tip-async" role="tooltip">Tracked asynchronous tasks in the Promise Dashboard.</span></span>
+        <span class="skill-tag-wrap"><button class="project-tag skill-tag" type="button" aria-expanded="false" aria-describedby="skill-tip-responsive">Responsive Design</button><span class="skill-tooltip" id="skill-tip-responsive" role="tooltip">Adapted pages for both desktop and mobile screens.</span></span>
+      </div>
+    </div>
+  </section>
+
+  <aside class="section-dot-nav" aria-label="Section navigation">
+    <a href="#home" class="section-dot is-active" aria-label="Home" aria-current="location" title="Home"><span></span></a>
+    <a href="#bio" class="section-dot" aria-label="About" title="About"><span></span></a>
+    <a href="#activities" class="section-dot" aria-label="Lab Activities" title="Lab Activities"><span></span></a>
+    <a href="#game" class="section-dot" aria-label="Mini Game" title="Mini Game"><span></span></a>
+    <a href="#contact" class="section-dot" aria-label="Contact" title="Contact"><span></span></a>
+  </aside>
+
+ 
+  <section id="about" class="about">
+    <p class="eyebrow">Get to know me</p>
+    <div class="info-heading">
+      <h2 class="section-title">Student Information</h2>
+      <button id="studentInfoToggle" class="info-visibility-toggle" type="button" aria-label="Hide student info" aria-expanded="true" aria-controls="studentInfoGrid" title="Hide student info">
+        <svg class="info-toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <g class="info-eye-open"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></g>
+          <g class="info-eye-closed"><path d="M3 3l18 18"/><path d="M10.6 5.1A10.8 10.8 0 0 1 12 5c6.4 0 10 7 10 7a15.5 15.5 0 0 1-3.1 3.8"/><path d="M6.2 6.2C3.5 8 2 12 2 12s3.6 7 10 7a10.2 10.2 0 0 0 4.1-.8"/></g>
+        </svg>
+      </button>
+    </div>
+
+    <div class="info-grid" id="studentInfoGrid" aria-hidden="false">
+      <div class="info-card">
+        <div class="info-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+        <h3>Name</h3>
+        <p>Jeremy G. Ban</p>
+      </div>
+      <div class="info-card">
+        <div class="info-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2Z"/></svg></div>
+        <h3>Section</h3>
+        <p>BSCS31A</p>
+      </div>
+      <div class="info-card">
+        <div class="info-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></div>
+        <h3>Birthday</h3>
+        <p>January 12, 2004</p>
+      </div>
+      <div class="info-card">
+        <div class="info-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
+        <h3>Age</h3>
+        <p>22</p>
+      </div>
+      <div class="info-card">
+        <div class="info-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5-10-5Z"/><path d="M6 12v5c0 1.66 2.69 3 6 3s6-1.34 6-3v-5"/></svg></div>
+        <h3>College</h3>
+        <p>Pambayang Dalubhasaan Ng Marilao</p>
+      </div>
+      <div class="info-card">
+        <div class="info-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+        <h3>Instructor</h3>
+        <p>Prof. Jhon Ralph Agoy Agoy</p>
+      </div>
+    </div>
+  </section>
+
+
+  <section id="bio" class="bio">
+    <p class="eyebrow">A little about me</p>
+    <h2 class="section-title">Who I Am</h2>
+    <div class="bio-panels">
+      <article class="bio-panel bio-story-card">
+        <div class="bio-story-heading">
+          <span class="bio-story-kicker">A LITTLE ABOUT ME</span>
+          <span class="bio-story-step" id="bioStoryStep" aria-hidden="true">01 <span>/ 03</span></span>
+        </div>
+        <div class="bio-story-tabs" role="tablist" aria-label="About Jeremy">
+          <button class="bio-story-tab is-active" id="bio-tab-intro" type="button" role="tab" aria-selected="true" aria-controls="bio-panel-intro" tabindex="0">Introduction</button>
+          <button class="bio-story-tab" id="bio-tab-interests" type="button" role="tab" aria-selected="false" aria-controls="bio-panel-interests" tabindex="-1">Interests</button>
+          <button class="bio-story-tab" id="bio-tab-coursework" type="button" role="tab" aria-selected="false" aria-controls="bio-panel-coursework" tabindex="-1">Coursework</button>
+        </div>
+        <div class="bio-story-content" aria-live="polite">
+          <p class="bio-story-panel is-active" id="bio-panel-intro" role="tabpanel" aria-labelledby="bio-tab-intro" tabindex="0">I’m Jeremy, a Computer Science student who enjoys turning ideas into clear, welcoming web experiences. I’m building my skills one project at a time and love seeing a design come to life in the browser.</p>
+          <p class="bio-story-panel" id="bio-panel-interests" role="tabpanel" aria-labelledby="bio-tab-interests" tabindex="0" hidden>I’m especially interested in front-end development: thoughtful layouts, responsive interfaces, and the JavaScript that makes a page feel useful and interactive. I also enjoy exploring how data and APIs can make websites more dynamic.</p>
+          <p class="bio-story-panel" id="bio-panel-coursework" role="tabpanel" aria-labelledby="bio-tab-coursework" tabindex="0" hidden>This portfolio brings together what I learned throughout the semester in my Web Development subject, including my Midterm and Finals lab activities. I’m continuing to build on these skills as I explore new ideas and create more projects.</p>
+        </div>
+      </article>
+
+      <article class="bio-panel bio-photo-card">
+        <button class="bio-photo-flip" type="button" aria-label="Flip photo card" aria-pressed="false">
+          <span class="bio-photo-flip-inner">
+            <span class="bio-photo-face bio-photo-front">
+              <span class="bio-photo-frame">
+                <img src="images/profile.jpg" alt="Portrait of Jeremy G. Ban" loading="lazy">
+              </span>
+              <span class="bio-photo-caption">Jeremy G. Ban <span>Computer Science student</span></span>
+              <span class="bio-photo-hint" aria-hidden="true">↻</span>
+            </span>
+            <span class="bio-photo-face bio-photo-back" aria-hidden="true">
+              <span class="bio-photo-back-mark" aria-hidden="true">✦</span>
+              <span>Always learning something new.</span>
+              <span class="bio-photo-back-hint">Click to flip back</span>
+            </span>
+          </span>
+        </button>
+      </article>
+
+      <article class="bio-panel bio-student-card">
+        <h3>Student Profile</h3>
+        <dl class="bio-detail-list">
+          <div><dt>Name</dt><dd>Jeremy G. Ban</dd></div>
+          <div><dt>Year Level</dt><dd>3rd Year</dd></div>
+          <div class="bio-course-row">
+            <dt>Course</dt>
+            <dd>
+              <button class="bio-course-toggle" type="button" aria-expanded="false" aria-controls="bioCourseNote">BS Computer Science</button>
+              <span class="bio-course-note" id="bioCourseNote" hidden>Covers programming, software development, algorithms, and computer systems.</span>
+            </dd>
+          </div>
+          <div><dt>Status</dt><dd class="bio-status"><span aria-hidden="true"></span>Learning</dd></div>
+        </dl>
+      </article>
+
+      <article class="bio-panel bio-facts-card">
+        <h3>
+          <span class="bio-facts-title">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 1.8 6.2L20 10l-6.2 1.8L12 18l-1.8-6.2L4 10l6.2-1.8L12 2Z"/><path d="m19 14 .9 3.1L23 18l-3.1.9L19 22l-.9-3.1L15 18l3.1-.9L19 14Z"/></svg>
+            Fun Facts
+          </span>
+          <button class="bio-facts-shuffle" type="button" aria-label="Shuffle fun facts" title="Shuffle fun facts">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m18 14 4 4-4 4"/><path d="M2 18h2.5a6 6 0 0 0 4.8-2.4l5.4-7.2A6 6 0 0 1 19.5 6H22"/><path d="m18 2 4 4-4 4"/><path d="M2 6h2.5a6 6 0 0 1 4.8 2.4l1 1.3"/><path d="m14 14 1.4 1.9a6 6 0 0 0 4.1 2.1H22"/></svg>
+          </button>
+        </h3>
+        <ul class="bio-facts-list">
+          <li><button class="bio-fact-toggle" type="button" aria-expanded="false"><span class="bio-fact-text">WebCook is a cookie bakery site featuring four flavors, a daily menu, bakery story, and cookie gallery.</span></button></li>
+          <li><button class="bio-fact-toggle" type="button" aria-expanded="false"><span class="bio-fact-text">The AJAX User Loader fetches and displays user data without refreshing the page.</span></button></li>
+          <li><button class="bio-fact-toggle" type="button" aria-expanded="false"><span class="bio-fact-text">Finals Act 3 lets visitors choose a program, switch profile and grades views, and recolor table rows.</span></button></li>
+          <li><button class="bio-fact-toggle" type="button" aria-expanded="false"><span class="bio-fact-text">My first multi-page site connected Home, Profile, Table, and Registration pages with working navigation.</span></button></li>
+        </ul>
+      </article>
+
+      <div class="bio-lower-panels">
+        <blockquote class="bio-quote-card" data-quote-theme="0">
+          <span class="quote-mark" aria-hidden="true">“</span>
+          <span class="quote-backdrop quote-backdrop--one is-active" aria-hidden="true"></span>
+          <span class="quote-backdrop quote-backdrop--two" aria-hidden="true"></span>
+          <div class="quote-carousel" id="quoteCarousel" aria-label="Portfolio quotes">
+            <div class="quote-slide is-active" aria-hidden="false">
+              <p aria-live="polite" aria-atomic="true">“Learning, building, and reflecting — one lab at a time.”</p>
+              <span>— on learning to code</span>
+            </div>
+            <div class="quote-slide" aria-hidden="true">
+              <p aria-live="off" aria-atomic="true">“Every bug fixed is a lesson learned.”</p>
+              <span>— on debugging</span>
+            </div>
+            <div class="quote-slide" aria-hidden="true">
+              <p aria-live="off" aria-atomic="true">“Code a little, break a little, learn a lot.”</p>
+              <span>— on experimenting</span>
+            </div>
+            <div class="quote-slide" aria-hidden="true">
+              <p aria-live="off" aria-atomic="true">“Still figuring it out — one project at a time.”</p>
+              <span>— on the process</span>
+            </div>
+            <div class="quote-slide" aria-hidden="true">
+              <p aria-live="off" aria-atomic="true">“Small wins add up to real progress.”</p>
+              <span>— on steady progress</span>
+            </div>
+            <div class="quote-indicators" role="group" aria-label="Choose a quote">
+              <button class="quote-indicator is-active" type="button" aria-label="Show quote 1" aria-pressed="true"></button>
+              <button class="quote-indicator" type="button" aria-label="Show quote 2" aria-pressed="false"></button>
+              <button class="quote-indicator" type="button" aria-label="Show quote 3" aria-pressed="false"></button>
+              <button class="quote-indicator" type="button" aria-label="Show quote 4" aria-pressed="false"></button>
+              <button class="quote-indicator" type="button" aria-label="Show quote 5" aria-pressed="false"></button>
+            </div>
+          </div>
+        </blockquote>
+
+        <article class="bio-panel bio-stats-card">
+          <div class="bio-stats-heading">
+            <div>
+              <h3>My Stats</h3>
+              <p>Self-assessed practice so far</p>
+            </div>
+            <span class="bio-stats-icon" aria-hidden="true">✦</span>
+          </div>
+          <div class="skill-progress-list">
+            <div class="skill-progress" data-progress="30">
+              <div class="skill-progress-heading"><span>HTML</span><span>30%</span></div>
+              <div class="skill-progress-track" role="progressbar" aria-label="HTML practice" aria-valuemin="0" aria-valuemax="100" aria-valuenow="30"><span></span></div>
+            </div>
+            <div class="skill-progress" data-progress="25">
+              <div class="skill-progress-heading"><span>CSS</span><span>25%</span></div>
+              <div class="skill-progress-track" role="progressbar" aria-label="CSS practice" aria-valuemin="0" aria-valuemax="100" aria-valuenow="25"><span></span></div>
+            </div>
+            <div class="skill-progress" data-progress="15">
+              <div class="skill-progress-heading"><span>JavaScript</span><span>15%</span></div>
+              <div class="skill-progress-track" role="progressbar" aria-label="JavaScript practice" aria-valuemin="0" aria-valuemax="100" aria-valuenow="15"><span></span></div>
+            </div>
+            <div class="skill-progress" data-progress="10">
+              <div class="skill-progress-heading"><span>jQuery</span><span>10%</span></div>
+              <div class="skill-progress-track" role="progressbar" aria-label="jQuery practice" aria-valuemin="0" aria-valuemax="100" aria-valuenow="10"><span></span></div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+ 
+  <section id="activities" class="activities">
+    <p class="eyebrow">My hands-on work</p>
+    <h2 class="section-title">Web Development Lab Activities</h2>
+
+    <div class="activity-filters" role="group" aria-label="Filter lab activities by term">
+      <button class="activity-filter is-active" type="button" data-activity-filter="all" aria-pressed="true">All</button>
+      <button class="activity-filter" type="button" data-activity-filter="midterm" aria-pressed="false">Midterm</button>
+      <button class="activity-filter" type="button" data-activity-filter="finals" aria-pressed="false">Finals</button>
+    </div>
+
+    <div class="activity-carousel-controls" role="group" aria-label="Scroll lab activities">
+      <button class="activity-carousel-button" type="button" data-activity-scroll="-1" aria-label="Scroll to previous activity">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
+      </button>
+      <button class="activity-carousel-button" type="button" data-activity-scroll="1" aria-label="Scroll to next activity">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+      </button>
+    </div>
+
+    <div class="project-grid" id="activityGrid" tabindex="0" aria-label="Web development lab activities">
+      <article class="project-card" data-category="midterm">
+        <div class="project-art project-art--website" aria-hidden="true">
+          <span class="project-art-label">MIDTERM</span>
+          <span class="project-art-mark">&lt;/&gt;</span>
+        </div>
+        <div class="project-card-content">
+          <h3>Personal Website</h3>
+          <p class="project-description">A multi-page personal website with Home, Profile, Table, and Registration pages.</p>
+          <div class="project-tags" aria-label="Technologies">
+            <span class="project-tag">HTML</span><span class="project-tag">CSS</span><span class="project-tag">Multi-page</span>
+          </div>
+          <a class="project-link" href="projects/midterm-personal-website/HOME.HTML" target="_blank" rel="noopener">Open project <span aria-hidden="true">↗</span></a>
+          <button class="reflection-toggle" type="button" aria-expanded="false" aria-controls="reflection-personal">Show Reflection <span aria-hidden="true">↓</span></button>
+          <div class="reflection-panel" id="reflection-personal" aria-hidden="true" inert>
+            <p>First time really splitting a site into separate pages instead of one long HTML file. Linking everything together properly took a bit of trial and error but it clicked eventually.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="project-card" data-category="midterm">
+        <div class="project-art project-art--grades" aria-hidden="true">
+          <span class="project-art-label">MIDTERM</span>
+        </div>
+        <div class="project-card-content">
+          <h3>Student Grade Website</h3>
+          <p class="project-description">A student website with external CSS, Flexbox navigation, and a grade table.</p>
+          <div class="project-tags" aria-label="Technologies">
+            <span class="project-tag">HTML</span><span class="project-tag">CSS</span><span class="project-tag">Flexbox</span>
+          </div>
+          <a class="project-link" href="projects/midterm-student-grade-website/index.html" target="_blank" rel="noopener">Open project <span aria-hidden="true">↗</span></a>
+          <button class="reflection-toggle" type="button" aria-expanded="false" aria-controls="reflection-grades">Show Reflection <span aria-hidden="true">↓</span></button>
+          <div class="reflection-panel" id="reflection-grades" aria-hidden="true" inert>
+            <p>Moved my CSS into its own file for this one and finally got the hang of Flexbox for the nav bar. The grade table was simple but made me think more about how data should actually look on a page.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="project-card" data-category="midterm">
+        <div class="project-art project-art--webcook" aria-hidden="true">
+          <span class="project-art-label">MIDTERM</span>
+        </div>
+        <div class="project-card-content">
+          <h3>WebCook</h3>
+          <p class="project-description">A cookie bakery site featuring four flavors, a menu, bakery story, and cookie gallery.</p>
+          <div class="project-tags" aria-label="Technologies">
+            <span class="project-tag">HTML</span><span class="project-tag">CSS</span><span class="project-tag">Recipe</span>
+          </div>
+          <a class="project-link" href="projects/midterm-webcook/html.html" target="_blank" rel="noopener">Open project <span aria-hidden="true">↗</span></a>
+          <button class="reflection-toggle" type="button" aria-expanded="false" aria-controls="reflection-webcook">Show Reflection <span aria-hidden="true">↓</span></button>
+          <div class="reflection-panel" id="reflection-webcook" aria-hidden="true" inert>
+            <p>I wanted to make something more playful than another student profile, so I built a cookie bakery site. Choosing cookie flavors and arranging the menu and gallery images took more care than I expected.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="project-card" data-category="midterm">
+        <div class="project-art project-art--registration" aria-hidden="true">
+          <span class="project-art-label">MIDTERM</span>
+        </div>
+        <div class="project-card-content">
+          <h3>Student Registration</h3>
+          <p class="project-description">A student registration website with profile, grades table, and registration pages.</p>
+          <div class="project-tags" aria-label="Technologies">
+            <span class="project-tag">HTML</span><span class="project-tag">CSS</span><span class="project-tag">Forms</span>
+          </div>
+          <a class="project-link" href="projects/midterm-student-registration/index.html" target="_blank" rel="noopener">Open project <span aria-hidden="true">↗</span></a>
+          <button class="reflection-toggle" type="button" aria-expanded="false" aria-controls="reflection-registration">Show Reflection <span aria-hidden="true">↓</span></button>
+          <div class="reflection-panel" id="reflection-registration" aria-hidden="true" inert>
+            <p>Added a registration form on top of the earlier student pages. Mostly about keeping the design consistent across pages instead of each one looking different.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="project-card" data-category="finals">
+        <div class="project-art project-art--profile" aria-hidden="true">
+          <span class="project-art-label">FINALS</span>
+        </div>
+        <div class="project-card-content">
+          <h3>Interactive Profile</h3>
+          <p class="project-description">A profile activity that responds to nickname and year input, clicks, and mouse interactions.</p>
+          <div class="project-tags" aria-label="Technologies">
+            <span class="project-tag">JavaScript</span><span class="project-tag">Events</span><span class="project-tag">User input</span>
+          </div>
+          <a class="project-link" href="projects/finals-interactive-profile/index%20(2).html" target="_blank" rel="noopener">Open project <span aria-hidden="true">↗</span></a>
+          <button class="reflection-toggle" type="button" aria-expanded="false" aria-controls="reflection-profile">Show Reflection <span aria-hidden="true">↓</span></button>
+          <div class="reflection-panel" id="reflection-profile" aria-hidden="true" inert>
+            <p>First real taste of JS events — nickname input, clicks, mouse stuff. Felt like the page actually reacted to me for once instead of just sitting there.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="project-card" data-category="finals">
+        <div class="project-art project-art--promise" aria-hidden="true">
+          <span class="project-art-label">FINALS</span>
+          <span class="project-art-mark">⏳</span>
+        </div>
+        <div class="project-card-content">
+          <h3>Promise Dashboard</h3>
+          <p class="project-description">A Promise-based dashboard that tracks and schedules tasks asynchronously.</p>
+          <div class="project-tags" aria-label="Technologies">
+            <span class="project-tag">JavaScript</span><span class="project-tag">Promises</span><span class="project-tag">Async</span>
+          </div>
+          <a class="project-link" href="projects/finals-promise-dashboard/index.html" target="_blank" rel="noopener">Open project <span aria-hidden="true">↗</span></a>
+          <button class="reflection-toggle" type="button" aria-expanded="false" aria-controls="reflection-promises">Show Reflection <span aria-hidden="true">↓</span></button>
+          <div class="reflection-panel" id="reflection-promises" aria-hidden="true" inert>
+            <p>Promises confused me more than I expected. Took a few tries before async actually made sense instead of just copying syntax.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="project-card" data-category="finals">
+        <div class="project-art project-art--loading" aria-hidden="true">
+          <span class="project-art-label">FINALS</span>
+          <span class="project-art-mark">↻</span>
+        </div>
+        <div class="project-card-content">
+          <h3>JavaScript Loading Demo</h3>
+          <p class="project-description">A vanilla JavaScript demo showing loading states and conditional rendering.</p>
+          <div class="project-tags" aria-label="Technologies">
+            <span class="project-tag">JavaScript</span><span class="project-tag">DOM</span><span class="project-tag">Loading states</span>
+          </div>
+          <a class="project-link" href="projects/finals-javascript-loading-demo/index.html" target="_blank" rel="noopener">Open project <span aria-hidden="true">↗</span></a>
+          <button class="reflection-toggle" type="button" aria-expanded="false" aria-controls="reflection-loading">Show Reflection <span aria-hidden="true">↓</span></button>
+          <div class="reflection-panel" id="reflection-loading" aria-hidden="true" inert>
+            <p>Played around with loading states here — showing/hiding stuff depending on what’s ready yet. Small activity but useful for understanding how real apps handle waiting.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="project-card" data-category="finals">
+        <div class="project-art project-art--ajax" aria-hidden="true">
+          <span class="project-art-label">FINALS</span>
+          <span class="project-art-mark">{ }</span>
+        </div>
+        <div class="project-card-content">
+          <h3>AJAX User Loader</h3>
+          <p class="project-description">An AJAX activity that fetches and displays user data without reloading the page.</p>
+          <div class="project-tags" aria-label="Technologies">
+            <span class="project-tag">JavaScript</span><span class="project-tag">AJAX</span><span class="project-tag">Fetch</span>
+          </div>
+          <a class="project-link" href="projects/finals-ajax-user-loader/index%20(1).html" target="_blank" rel="noopener">Open project <span aria-hidden="true">↗</span></a>
+          <button class="reflection-toggle" type="button" aria-expanded="false" aria-controls="reflection-ajax">Show Reflection <span aria-hidden="true">↓</span></button>
+          <div class="reflection-panel" id="reflection-ajax" aria-hidden="true" inert>
+            <p>My first time pulling data in without refreshing the page. Once it worked it was kind of satisfying seeing the data just show up like that.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="project-card" data-category="finals">
+        <div class="project-art project-art--finals" aria-hidden="true">
+          <span class="project-art-label">FINALS</span>
+          <span class="project-art-mark">▤</span>
+        </div>
+        <div class="project-card-content">
+          <h3>Interactive Student Dashboard</h3>
+          <p class="project-description">A jQuery dashboard with a program dropdown, togglable profile and table, title changes, and color-toggled rows.</p>
+          <div class="project-tags" aria-label="Technologies">
+            <span class="project-tag">jQuery</span><span class="project-tag">DOM</span><span class="project-tag">Event handling</span>
+          </div>
+          <a class="project-link" href="projects/finals-act3/act.html" target="_blank" rel="noopener">Open project <span aria-hidden="true">↗</span></a>
+          <button class="reflection-toggle" type="button" aria-expanded="false" aria-controls="reflection-dashboard">Show Reflection <span aria-hidden="true">↓</span></button>
+          <div class="reflection-panel" id="reflection-dashboard" aria-hidden="true" inert>
+            <p>Used jQuery for this one instead of plain JS — show/hide buttons, dropdown for the course, recoloring table rows. Faster to write but made me curious what it’s actually doing under the hood.</p>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+
+  <section id="game" class="mini-game">
+    <p class="eyebrow">Take a little break</p>
+    <h2 class="section-title">Catch the Stars</h2>
+    <div class="game-card">
+      <p class="game-instructions" id="gameInstructions">Catch the falling stars in your basket! Use the arrow keys or A and D, move your pointer over the playfield, or tap the direction buttons. Miss 3 stars and the game ends.</p>
+      <div class="game-stats" aria-label="Game score">
+        <p>Score <strong id="gameScore">0</strong></p>
+        <p>Missed <strong id="gameMisses">0 / 3</strong></p>
+      </div>
+      <canvas id="starGame" class="game-canvas" width="600" height="320" tabindex="0" aria-label="Catch the Stars playfield. Use the left and right arrow keys or A and D to move the basket."></canvas>
+      <div class="game-actions">
+        <div class="game-direction-controls" aria-label="Move the basket">
+          <button class="game-control-button" id="moveLeft" type="button" aria-label="Move basket left">←</button>
+          <button class="game-control-button" id="moveRight" type="button" aria-label="Move basket right">→</button>
+        </div>
+        <button class="game-start-button" id="startGame" type="button">Play</button>
+      </div>
+      <p id="gameStatus" class="game-status" role="status" aria-live="polite">Ready when you are. Press Play to start.</p>
+    </div>
+  </section>
+
+  
+  <section id="contact" class="contact">
+    <p class="eyebrow">Let's connect</p>
+    <h2 class="section-title">Get In Touch</h2>
+
+    <div class="contact-card">
+      <button class="contact-item contact-copy" id="copyEmail" type="button" data-copy-value="jeremyban.pdm@gmail.com" aria-label="Copy email address">
+        <span class="contact-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg></span>
+        <span class="contact-copy-content">
+          <span class="contact-label">Email</span>
+          <span class="contact-value">jeremyban.pdm@gmail.com</span>
+        </span>
+      </button>
+      <a class="contact-item contact-social contact-github" href="https://github.com/luuuffffy" target="_blank" rel="noopener noreferrer">
+        <span class="contact-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .9a11.1 11.1 0 0 0-3.51 21.63c.55.1.76-.24.76-.54v-2.08c-3.1.67-3.76-1.32-3.76-1.32-.5-1.28-1.23-1.62-1.23-1.62-1.01-.69.08-.68.08-.68 1.12.08 1.71 1.15 1.71 1.15 1 .1.77 2.21 3.96 1.57.1-.72.39-1.21.7-1.49-2.48-.28-5.09-1.24-5.09-5.52 0-1.22.44-2.21 1.15-2.99-.12-.29-.5-1.42.11-2.95 0 0 .94-.3 3.05 1.14a10.6 10.6 0 0 1 5.55 0c2.11-1.44 3.04-1.14 3.04-1.14.61 1.53.23 2.66.12 2.95.71.78 1.14 1.77 1.14 2.99 0 4.29-2.61 5.23-5.1 5.51.4.35.75 1.02.75 2.06v3.05c0 .3.2.65.77.54A11.1 11.1 0 0 0 12 .9Z"/></svg></span>
+        <span class="contact-copy-content">
+          <h4>GitHub</h4>
+          <span class="contact-value">github.com/luuuffffy</span>
+        </span>
+        <svg class="contact-external-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3h7v7M10 14 21 3M19 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h6"/></svg>
+      </a>
+      <button class="contact-item contact-copy" id="contactPhoneItem" type="button" data-copy-value="0951 083 8222" aria-label="Copy contact number">
+        <span class="contact-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92Z"/></svg></span>
+        <span class="contact-copy-content">
+          <span class="contact-label">Contact Number</span>
+          <span class="contact-value">0951 083 8222</span>
+        </span>
+      </button>
+      <a class="contact-item contact-social contact-facebook" href="https://www.facebook.com/jemiah.ban" target="_blank" rel="noopener noreferrer">
+        <span class="contact-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.093 10.125 24v-8.437H7.078v-3.49h3.047V9.413c0-3.025 1.792-4.696 4.533-4.696 1.312 0 2.686.236 2.686.236v2.976h-1.513c-1.49 0-1.956.93-1.956 1.885v2.26h3.328l-.532 3.489h-2.796V24C19.612 23.093 24 18.1 24 12.073Z"/></svg></span>
+        <span class="contact-copy-content">
+          <span class="contact-label">Facebook</span>
+          <span class="contact-value">facebook.com/jemiah.ban</span>
+        </span>
+        <svg class="contact-external-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3h7v7M10 14 21 3M19 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h6"/></svg>
+      </a>
+    </div>
+  </section>
+  <div id="copyToast" class="copy-toast" role="status" aria-live="polite" aria-atomic="true"></div>
+
+  <footer class="footer">
+    <p>&copy; 2026 Jeremy G. Ban &middot; BSCS31A</p>
+  </footer>
+
+  <button id="backToTop" class="back-to-top" type="button" aria-label="Back to top" title="Back to top">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m18 15-6-6-6 6"/></svg>
+  </button>
+
+  <aside class="site-controls" aria-label="Music and background controls">
+    <div class="brightness-control">
+      <svg class="brightness-icon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"/></svg>
+      <label class="visually-hidden" for="pageBrightness">Page brightness</label>
+      <span class="brightness-slider-wrap">
+        <input id="pageBrightness" type="range" min="35" max="100" value="100">
+        <span id="brightnessTooltip" class="brightness-tooltip" aria-hidden="true">100%</span>
+      </span>
+      <output id="brightnessValue" for="pageBrightness">100%</output>
+    </div>
+    <div class="music-control">
+      <div class="music-visualizer" aria-hidden="true">
+        <span></span><span></span><span></span><span></span><span></span>
+      </div>
+      <div class="music-details">
+        <span class="control-label">YOUR SOUNDTRACK</span>
+        <span id="trackName" class="track-name" title="Lo-fi Ambient (default)">Lo-fi Ambient (default)</span>
+        <label class="visually-hidden" for="musicProgress">Track position</label>
+        <input id="musicProgress" class="music-progress" type="range" min="0" max="1000" value="0" step="1" disabled>
+      </div>
+      <button id="playMusic" class="control-button play-button" type="button" aria-label="Play music" disabled>
+        <svg id="playIcon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+      </button>
+      <label class="control-button choose-button" for="musicFile" title="Choose an audio file" aria-label="Choose an audio file">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4"/><path d="m7 9 5-5 5 5"/><path d="M5 20h14"/></svg>
+      </label>
+      <input id="musicFile" class="visually-hidden" type="file" accept="audio/*">
+      <button id="resetMusic" class="control-button reset-button" type="button" title="Reset to default soundtrack" aria-label="Reset to default soundtrack" disabled>
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 2.64-6.36L3 8"/><path d="M3 3v5h5"/></svg>
+      </button>
+      <div class="volume-control">
+        <button id="volumeToggle" class="control-button volume-button" type="button" aria-label="Show volume control" aria-expanded="false" aria-controls="musicVolume">
+          <svg id="volumeIcon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M19 5a10 10 0 0 1 0 14"/></svg>
+        </button>
+        <label class="visually-hidden" for="musicVolume">Music volume</label>
+        <input id="musicVolume" class="music-volume" type="range" min="0" max="1" value="0.7" step="0.01" tabindex="-1">
+      </div>
+    </div>
+    <button id="ambientToggle" class="ambient-toggle" type="button" aria-pressed="false">
+      <span class="ambient-indicator" aria-hidden="true"></span>
+      <span>Ambient motion</span>
+    </button>
+    <p id="musicStatus" class="visually-hidden" role="status" aria-live="polite">Lo-fi Ambient (default) is ready to play.</p>
+    <!-- Replace music/ambient-default.mp3 with a royalty-free or Creative Commons track you have rights to use — do not use copyrighted commercial music here. -->
+    <audio id="portfolioAudio" src="music/ambient-default.mp3" data-track-type="default" preload="metadata" loop></audio>
+  </aside>
+
+  <script src="script.js"></script>
+</body>
+</html>

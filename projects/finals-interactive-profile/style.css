@@ -1,0 +1,91 @@
+body {
+    font-family: "Fredoka", "Comic Sans MS", cursive;
+    background: #ffd6e5;
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+}
+
+
+#form {
+    background: #ffffff;
+    width: 300px;
+    padding: 20px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 5px 20px rgba(214, 72, 126, 0.25);
+}
+
+
+#myImg {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 3px solid #f7a1c0;
+    object-fit: cover;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+}
+
+#myImg:hover {
+    transform: scale(1.2) rotate(2deg);
+}
+
+
+#name {
+    font-family: "Pacifico", cursive;
+    font-weight: normal;
+    margin: 10px 0 0;
+    color: #d6487e;
+}
+
+.course {
+    color: #b07a8f;
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+
+
+input,
+select {
+    font-family: inherit;
+    width: 280px;
+    padding: 8px;
+    margin: 6px 0;
+    border-radius: 8px;
+    border: 1px solid #f7b6cc;
+    outline: none;
+}
+
+#nickname {
+    width: 250px;
+    transition: 0.2s ease-in-out;
+}
+
+
+.btns {
+    margin-top: 10px;
+}
+
+button {
+    font-family: inherit;
+    background: #f7a1c0;
+    color: #ffffff;
+    border: none;
+    padding: 7px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    margin: 3px;
+    transition: 0.5s ease-in-out;
+}
+
+button:hover {
+    background: #d6487e;
+}
+
+
+#status {
+    margin-top: 15px;
+    font-weight: bold;
+    color: #c2185b;
+}
